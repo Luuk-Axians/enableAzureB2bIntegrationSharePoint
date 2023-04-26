@@ -8,8 +8,7 @@ Import-Module Microsoft.Online.SharePoint.PowerShell -DisableNameChecking
 
 # Connect to SharePoint
 $adminUrl = "https://YourTenantName-admin.sharepoint.com" # Replace "YourTenantName" with your tenant name
-$credential = Get-Credential
-Connect-SPOService -Url $adminUrl -Credential $credential
+Connect-SPOService -Url $adminUrl
 
 # Enable Azure B2B Integration
 Set-SPOTenant -EnableAzureADB2BIntegration $true

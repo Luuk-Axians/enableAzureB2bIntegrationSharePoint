@@ -20,6 +20,14 @@ Azure AD B2B provides authentication and management of guests, allowing for seam
 
 None, the script will check if the required modules are installed and if not it will install them for you.
 
+# Running the Script
+
+1. Open PowerShell as an administrator.
+2. Download the script to your machine.
+3. Replace `YourTenantName` in the $adminURL with the name of your tenant.
+4. Run the script by typing `.\enableAzureB2BforSharepoint.ps1` and pressing Enter.
+5. Type `get-SPOTenant` to get a list of all the SharePoint Online Tenant Properties. You should see the `EnableAzureADB2BIntegration` property set to `True`.
+
 ## 📚 Script Breakdown
 1. Install SharePoint Online Management Shell:
 This part of the script checks if the "Microsoft.Online.SharePoint.PowerShell" module is installed. If it's not, it installs the module for the current user.
@@ -36,12 +44,11 @@ Import-Module Microsoft.Online.SharePoint.PowerShell -DisableNameChecking
 ```
 
 3. Connect to SharePoint:
-This part of the script sets the admin URL for your SharePoint tenant (replace "YourTenantName" with your tenant name) and prompts you for your credentials. Then it connects to SharePoint Online using the provided URL and credentials.
+This part of the script sets the admin URL for your SharePoint tenant (replace "YourTenantName" with your tenant name) and another window will pop up asking you to sign in to your tenant.
 
 ```
 $adminUrl = "https://YourTenantName-admin.sharepoint.com" # Replace "YourTenantName" with your tenant name
-$credential = Get-Credential
-Connect-SPOService -Url $adminUrl -Credential $credential
+Connect-SPOService -Url $adminUrl
 ```
 
 4. Enable Azure B2B Integration:

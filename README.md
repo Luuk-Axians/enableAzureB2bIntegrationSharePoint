@@ -20,7 +20,7 @@ Azure AD B2B provides authentication and management of guests, allowing for seam
 
 None, the script will check if the required modules are installed and if not it will install them for you.
 
-# Running the Script
+# 📜 Running the Script
 
 1. Open PowerShell as an administrator.
 2. Download the script to your machine.

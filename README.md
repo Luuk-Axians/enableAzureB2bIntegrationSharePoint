@@ -1,6 +1,6 @@
 # ✅ Enable Azure B2B Integration for Sharepoint Online
 
-This guide explains how to enable Azure B2B Integration for SharePoint and the advantages and impact of this integration.
+This repository provides a solution to enable Azure B2B Integration for SharePoint and describes the advantages and impact of this integration. Within the repository you will find a PowerShell script `enableAzureB2BforSharepoint.ps1` to automate the process.
 
 ## 📋 Overview
 Azure AD B2B provides authentication and management of guests, allowing for seamless sharing of files, folders, list items, document libraries, and sites with people outside your organization. The integration with SharePoint and OneDrive offers improved security and user experience compared to the existing secure external sharing recipient experience.
@@ -16,21 +16,9 @@ Azure AD B2B provides authentication and management of guests, allowing for seam
 - Once the integration is enabled, users don't have to reshare or do any manual migration for guests previously shared with. When someone outside your organization clicks on a link that was created before Azure AD B2B integration was enabled, SharePoint will automatically create a B2B guest account for the user who originally created the sharing link.
 - Guest users can't share the site or the documents themselves.
 
-## 🔧 Enabling the Integration
-To enable the integration, run the following PowerShell command:
-```
-Set-SPOTenant -EnableAzureADB2BIntegration $true
-```
+## 🔧 Prerequisites
 
-Or use the provided script to automate it, `enableAzureB2BIntegration.ps1`.
-
-## 🔧 Disabling the Integration
-To disable the integration, run the following PowerShell command:
-```
-Set-SPOTenant -EnableAzureADB2BIntegration $false
-```
-
-Important: Once disabled, users who were shared while the integration was enabled will always be an AAD Guest User for future shares. To convert a user from an AAD Guest User back to a SharePoint OTP user, you will need to delete the guest in AAD and remove all SPUser objects in your organization that reference that guest user.
+None, the script will check if the required modules are installed and if not it will install them for you.
 
 ## 📚 Script Breakdown
 1. Install SharePoint Online Management Shell:
@@ -68,3 +56,11 @@ This line writes a message to the console indicating that the Azure B2B Integrat
 ```
 Write-Host "Azure B2B Integration for SharePoint enabled successfully."
 ```
+
+# 🔧 Disabling the Integration
+If you need to disable the integration, run the following PowerShell command:
+```
+Set-SPOTenant -EnableAzureADB2BIntegration $false
+```
+
+**Important:** Once disabled, users who were shared while the integration was enabled will always be an AAD Guest User for future shares. To convert a user from an AAD Guest User back to a SharePoint OTP user, you will need to delete the guest in AAD and remove all SPUser objects in your organization that reference that guest user.
